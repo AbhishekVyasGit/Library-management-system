@@ -1,7 +1,7 @@
 const express = require("express");
 const router  = express.Router();
 const { createBookReviewHandler, updateBookReviewHandler, deleteBookReviewHandler, getAllBookReviewHandler} = require("../controllers/review-controller");
-const auth = require ("../middlewares/auth");
+const auth = require ("../middlewares/authentication");
 
 
 router.get("/books/:bookId/review/", auth, getAllBookReviewHandler);

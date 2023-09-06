@@ -2,15 +2,40 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
     {
-        title: { type: String, required: true, enum: ["Mr", "Mrs", "Miss"] },
-        name: { type: String, required: true },
-        phone: { type: String, required: true, unique: true },
-        email: { type: String, required: true, unique: true },
-        password: { type: String, required: true, minlength: 8,},
+        title: {
+            type: String,
+            required: true,
+            enum: ['Mr', 'Mrs', 'Miss'],
+            trim: true
+        },
+        name: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        phone: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+            lowercase: true,
+            trim: true
+        },
+        password: {
+            type: String,
+            required: true,
+            minlength: 8,
+            // maxlength: 15
+        },
         address: {
-            street: String,
-            city: String,
-            pincode: String
+            street: { type: String, trim: true },
+            city: { type: String, trim: true },
+            pincode: { type: String, trim: true }
         }
     },
     {

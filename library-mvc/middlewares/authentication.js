@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const secretKey = "library";
 
-const verifyToken = (req, res, next) => {
+const authentication = (req, res, next) => {
 
     try {
 
@@ -15,17 +15,19 @@ const verifyToken = (req, res, next) => {
 
             let decodedUser = jwt.verify(token, secretKey);
 
+            // console.log("decodedUser => ", decodedUser);
+
             req.userId = decodedUser.userId; // user.userId is provided by token
 
 
 
-        } 
+        }
         else {
 
             res.status(401).json({ message: "unauthorized user" });
         }
 
-       return next();
+        return next();
 
     } catch (err) {
         console.log(err);
@@ -33,4 +35,4 @@ const verifyToken = (req, res, next) => {
     }
 }
 
-module.exports = verifyToken;
+module.exports = authentication;
